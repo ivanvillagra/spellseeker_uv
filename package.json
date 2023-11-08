@@ -4,9 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "start": "serve dist -s -n -L -p $PORT",
+    "start": "npx http-server ./dist",
     "dev": "vite",
-    "build": "vite build",
+    "build": "tsc && vite build",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
