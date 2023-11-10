@@ -37,4 +37,4 @@ Ivan Villagra Latorre
 
 ## Links
 
-Project URL: [Project Link]([https://www.example.com](https://spellseekeruv-production.up.railway.app/)https://spellseekeruv-production.up.railway.app/)
+Project URL: [Project Link](https://spellseekeruv-production.up.railway.app/)
