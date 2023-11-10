@@ -14,7 +14,7 @@
   .dice-animation {
     animation: rotateDice 0.5s linear forwards; /* Mantuve la duración en 5 segundos */
   }
-  
+   
   .dice-visible {
     visibility: visible;
   }
