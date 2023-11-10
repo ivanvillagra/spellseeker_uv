@@ -1,3 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@keyframes rotateDice {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(1440deg); /* Cambié a 720deg para rotar dos veces en 5 segundos */
+    }
+  }
+  
+  .dice-animation {
+    animation: rotateDice 0.5s linear forwards; /* Mantuve la duración en 5 segundos */
+  }
+  
+  .dice-visible {
+    visibility: visible;
+  }
