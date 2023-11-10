@@ -37,4 +37,4 @@ Ivan Villagra Latorre
 
 ## Links
 
-Project URL: [Project Link](https://spellseekeruv-production.up.railway.app/)
+Project URL: [Project Link](https://spellseeker-uv.vercel.app/)
