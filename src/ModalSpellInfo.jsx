@@ -1,33 +1,47 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import diceRoller from 'dnd5e-dice-roller';
+import DicesContainer from "./dicesContainer";
 
 // eslint-disable-next-line react/prop-types
 export default function ModalSpellInfo({ spell, setOpenmodalInfo }) {
   const [spellInfo, setSpellInfo] = useState(null);
   const [dices, setDice] = useState('');
+  const [rolls, setRolls] = useState();
 
   useEffect(() => {
-    axios.get(spell).then((response) => {
-      const data = response.data;
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(spell);
+        const data = response.data;
 
-      setSpellInfo(data);
-      
-      if (data.damage && data.damage.damage_at_slot_level) {
-        const firstDamageValue = Object.values(data.damage.damage_at_slot_level)[0];
-        setDice(firstDamageValue);
+        setSpellInfo(data);
+
+        if (data.damage && data.damage.damage_at_slot_level) {
+          const firstDamageValue = Object.values(data.damage.damage_at_slot_level)[0];
+          setDice(firstDamageValue);
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
       }
-    });
+    };
 
+    fetchData();
   }, [spell]);
 
-  
 
-  
+  useEffect(() => {
+
+
+  }, [rolls])
+
+
 
   const handleClick = () => {
-    
-   alert(dices);
-    
+    setRolls();
+    const rollResult = diceRoller(dices);
+    setRolls(rollResult);
+    console.log(rollResult)
   };
 
   const handleSelectChange = (event) => {
@@ -57,23 +71,31 @@ export default function ModalSpellInfo({ spell, setOpenmodalInfo }) {
             <div className=" border-t-8 mt-1.5 border-t-black border-b-8 h-auto max-h-72 overflow-auto border-b-black">
               <p className=" text-2xl mt-3 mb-3 font-extrabold">Description:</p>
               <p className=" p-2 mb-4">{spellInfo.desc}</p>
-             
 
-            {spellInfo.damage && spellInfo.damage.damage_at_slot_level ?(
-               <div>
-               <p>Dices:</p>
-               <select onChange={handleSelectChange}>
-                 {Object.entries(spellInfo.damage.damage_at_slot_level).map(([key, value],index) => (
-                   <option key={key} value={value} selected={index===0} >
-                     {`lvl ${key}: ${value}`}
-                   </option>
-                 ))
-                 }
-               </select>
-               <button type="button" className=" ml-2 mb-4 w-20 p-1 bg-slate-900 rounded pointer  shadow-lg text-white"
-               onClick={handleClick}>roll dice</button>
-             </div>
-            ):(<></>)}
+
+              {spellInfo.damage && spellInfo.damage.damage_at_slot_level ? (
+                <div className="flex w-full items-center justify-between border-t-8  border-t-black border-b-black border-b-8">
+                  <div className="mt-4">
+                    <p>Dices:</p>
+                    <select onChange={handleSelectChange}>
+                      {Object.entries(spellInfo.damage.damage_at_slot_level).map(([key, value], index) => (
+                        <option key={key} value={value} selected={index === 0} >
+                          {`lvl ${key}: ${value}`}
+                        </option>
+                      ))
+                      }
+                    </select>
+                    <button type="button" className=" ml-2 mb-2 w-20 p-1 hover:bg-slate-600 bg-slate-900 rounded pointer  shadow-lg text-white"
+                      onClick={handleClick}>roll dice</button>
+                    
+
+                  </div>
+
+
+
+                  <DicesContainer rolls={rolls}></DicesContainer>
+                </div>
+              ) : (<></>)}
 
             </div>
 
