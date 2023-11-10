@@ -41,7 +41,6 @@ export default function ModalSpellInfo({ spell, setOpenmodalInfo }) {
     setRolls();
     const rollResult = diceRoller(dices);
     setRolls(rollResult);
-    console.log(rollResult)
   };
 
   const handleSelectChange = (event) => {
