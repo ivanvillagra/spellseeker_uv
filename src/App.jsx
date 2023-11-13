@@ -10,6 +10,7 @@ import axios from 'axios';
 import CardsContainer from "./CardsContainer"
 import ModalSpellInfo from "./ModalSpellInfo"
 
+
 function App() {
 
   const [listSpells,setSpell] = useState([]);

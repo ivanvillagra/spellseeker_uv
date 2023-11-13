@@ -40,6 +40,7 @@ export default function ModalSpellInfo({ spell, setOpenmodalInfo }) {
   const handleClick = () => {
     setRolls();
     const rollResult = diceRoller(dices);
+    console.log(rollResult);
     setRolls(rollResult);
   };
 
@@ -71,10 +72,22 @@ export default function ModalSpellInfo({ spell, setOpenmodalInfo }) {
               <p className=" text-2xl mt-3 mb-3 font-extrabold">Description:</p>
               <p className=" p-2 mb-4">{spellInfo.desc}</p>
 
+              <div className="mt-5">
 
-              {spellInfo.damage && spellInfo.damage.damage_at_slot_level ? (
-                <div className="flex w-full items-center justify-between border-t-8  border-t-black border-b-black border-b-8">
-                  <div className="mt-4">
+                <div className="flex w-auto justify-center flex-grow flex-wrap  font-extrabold">
+                  <p className="m-2">Level: {spellInfo.level}</p>
+                  <p className="m-2">Range: {spellInfo.range}</p>
+                  <p className="m-2">Duration: {spellInfo.duration}</p>
+                  <p className="m-2">Casting time: {spellInfo.casting_time}</p>
+                </div>
+
+              </div>
+
+            </div>
+
+            {spellInfo.damage && spellInfo.damage.damage_at_slot_level ? (
+                <div className="flex w-full flex-col items-center border-t-8  border-t-black border-b-black border-b-8">
+                  <div className="mt-4 ">
                     <p>Dices:</p>
                     <select onChange={handleSelectChange}>
                       {Object.entries(spellInfo.damage.damage_at_slot_level).map(([key, value], index) => (
@@ -95,20 +108,6 @@ export default function ModalSpellInfo({ spell, setOpenmodalInfo }) {
                   <DicesContainer rolls={rolls}></DicesContainer>
                 </div>
               ) : (<></>)}
-
-            </div>
-
-            <div className="mt-5">
-
-              <div className="flex w-auto justify-center flex-grow flex-wrap  font-extrabold">
-                <p className="m-2">Level: {spellInfo.level}</p>
-                <p className="m-2">Range: {spellInfo.range}</p>
-                <p className="m-2">Duration: {spellInfo.duration}</p>
-                <p className="m-2">Casting time: {spellInfo.casting_time}</p>
-              </div>
-
-
-            </div>
 
           </div>
         </>)
