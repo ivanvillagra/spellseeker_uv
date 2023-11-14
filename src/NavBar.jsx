@@ -9,7 +9,7 @@ export default function NavBar({appName}) {
                     <img src={logo}  className="mr-4 w-14 rounded" ></img>
                     <a
                         href="#"
-                        className="mr-4 block cursor-pointer hidden md:block py-1.5 font-mono text-4xl font-black leading-relaxed text-inherit antialiased"
+                        className="mr-4 block cursor-pointer  md:block py-1.5 font-mono text-4xl font-black leading-relaxed text-inherit antialiased"
                     >
                        {appName}
                     </a>

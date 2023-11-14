@@ -29,7 +29,7 @@ export default function DivD20(){
              {rolls?(<>
                 <div className="w-full  h-60 flex-col border-b-white border-b-2 flex justify-center items-center bg-black">
                 
-                <h1 className=" text-xl mb-8 text-white text-5xl font-extrabold"> D20</h1>
+                <h1 className="  mb-8 text-white text-5xl font-extrabold"> D20</h1>
                 <div onClick={handleClick}  className=' cursor-pointer !text-7xl' >
                     <Dice key={count} size="4x"  rolls={rolls} className=" !text-3xl" ></Dice>
                 </div>
