@@ -14,7 +14,7 @@ export default function ModalSpellInfo({ spell, setOpenmodalInfo }) {
       try {
         const response = await axios.get(spell);
         const data = response.data;
-
+        console.log(data);
         setSpellInfo(data);
 
         if (data.damage && data.damage.damage_at_slot_level) {
@@ -54,7 +54,7 @@ export default function ModalSpellInfo({ spell, setOpenmodalInfo }) {
         {spellInfo ? (<>
           <div className="w-5/6 md:4/6 xl:3/6 h-auto bg-white rounded-3xl p-4 font-extrabold">
             <div className="flex justify-end">
-              <button className=" w-24 rounded-full p-2 flex text-xl   h-9 w-9 cursor-pointer  justify-center items-center bg-black text-white"
+              <button className=" w-24 rounded-full p-2 flex text-xl   h-9  cursor-pointer  justify-center items-center bg-black text-white"
                 onClick={() => setOpenmodalInfo(false)}> X
               </button>
             </div>
@@ -70,7 +70,7 @@ export default function ModalSpellInfo({ spell, setOpenmodalInfo }) {
             <div className=" border-t-8 mt-1.5 border-t-black border-b-8 h-auto max-h-72 overflow-auto border-b-black">
               <p className=" text-2xl mt-3 mb-3 font-extrabold">Description:</p>
               <p className=" p-2 mb-4">{spellInfo.desc}</p>
-
+              <p className=" p-2 mb-4">{spellInfo.higher_level}</p>
               <div className="mt-5">
 
                 <div className="flex w-auto justify-center flex-grow flex-wrap  font-extrabold">
@@ -78,14 +78,29 @@ export default function ModalSpellInfo({ spell, setOpenmodalInfo }) {
                   <p className="m-2">Range: {spellInfo.range}</p>
                   <p className="m-2">Duration: {spellInfo.duration}</p>
                   <p className="m-2">Casting time: {spellInfo.casting_time}</p>
+                  {(spellInfo.damage) ? (<><p className="m-2">Damage type: {spellInfo.damage.damage_type.name}</p></>) : (<></>)}
                 </div>
 
+              </div>
+
+              <div className=" border-t-4 border-t-black flex-grow p-4">
+                <h1 className=" text-xl">Classes:</h1>
+                {console.log(spellInfo.classes)}
+                <div className="flex flex-wrap w-full">
+                {spellInfo.classes.map((value, index) => (
+                  <p key={"class" + index} className="h-10 w-20 rounded flex justify-center m-4 bg-slate-700 text-white p-2">
+                    {value.name}
+                  </p>
+                ))}
+                </div>
+                
               </div>
 
             </div>
 
             {spellInfo.damage && spellInfo.damage.damage_at_slot_level ? (
               <div className="flex w-full flex-col items-center border-t-8  border-t-black border-b-black border-b-8">
+
                 <div className="mt-4 ">
                   <p>Dices:</p>
                   <select onChange={handleSelectChange}>
