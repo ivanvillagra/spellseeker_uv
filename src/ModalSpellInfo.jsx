@@ -71,44 +71,41 @@ export default function ModalSpellInfo({ spell, setOpenmodalInfo }) {
               <p className=" text-2xl mt-3 mb-3 font-extrabold">Description:</p>
               <p className=" p-2 mb-4">{spellInfo.desc}</p>
 
+              <div className="mt-5">
 
-              {spellInfo.damage && spellInfo.damage.damage_at_slot_level ? (
-                <div className="flex w-full items-center justify-between border-t-8  border-t-black border-b-black border-b-8">
-                  <div className="mt-4">
-                    <p>Dices:</p>
-                    <select onChange={handleSelectChange}>
-                      {Object.entries(spellInfo.damage.damage_at_slot_level).map(([key, value], index) => (
-                        <option key={key} value={value} selected={index === 0} >
-                          {`lvl ${key}: ${value}`}
-                        </option>
-                      ))
-                      }
-                    </select>
-                    <button type="button" className=" ml-2 mb-2 w-20 p-1 hover:bg-slate-600 bg-slate-900 rounded pointer  shadow-lg text-white"
-                      onClick={handleClick}>roll dice</button>
-                    
-
-                  </div>
-
-
-
-                  <DicesContainer rolls={rolls}></DicesContainer>
+                <div className="flex w-auto justify-center flex-grow flex-wrap  font-extrabold">
+                  <p className="m-2">Level: {spellInfo.level}</p>
+                  <p className="m-2">Range: {spellInfo.range}</p>
+                  <p className="m-2">Duration: {spellInfo.duration}</p>
+                  <p className="m-2">Casting time: {spellInfo.casting_time}</p>
                 </div>
-              ) : (<></>)}
 
-            </div>
-
-            <div className="mt-5">
-
-              <div className="flex w-auto justify-center flex-grow flex-wrap  font-extrabold">
-                <p className="m-2">Level: {spellInfo.level}</p>
-                <p className="m-2">Range: {spellInfo.range}</p>
-                <p className="m-2">Duration: {spellInfo.duration}</p>
-                <p className="m-2">Casting time: {spellInfo.casting_time}</p>
               </div>
 
-
             </div>
+
+            {spellInfo.damage && spellInfo.damage.damage_at_slot_level ? (
+              <div className="flex w-full flex-col items-center border-t-8  border-t-black border-b-black border-b-8">
+                <div className="mt-4 ">
+                  <p>Dices:</p>
+                  <select onChange={handleSelectChange}>
+                    {Object.entries(spellInfo.damage.damage_at_slot_level).map(([key, value], index) => (
+                      <option key={key} value={value} selected={index === 0}>
+                        {`lvl ${key}: ${value}`}
+                      </option>
+                    ))}
+                  </select>
+                  <button type="button" className=" ml-2 mb-2 w-20 p-1 hover:bg-slate-600 bg-slate-900 rounded pointer  shadow-lg text-white"
+                    onClick={handleClick}>roll dice</button>
+
+
+                </div>
+
+
+
+                <DicesContainer rolls={rolls}></DicesContainer>
+              </div>
+            ) : (<></>)}
 
           </div>
         </>)
