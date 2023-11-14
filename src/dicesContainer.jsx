@@ -28,9 +28,8 @@ export default function DicesContainer({ rolls }) {
             key={renderCounter}
             className="dices max-h-24  overflow-auto justify-center flex-grow flex flex-wrap"
           >
-            {console.log(rolls)}
             {rolls.rolls.map((value, index) => (
-             <Dice value={value}  key={"dice" + index} rollStr = {rolls.rollStr}></Dice>
+             <Dice value={value} size="1x"  key={"dice" + index} rollStr = {rolls.rollStr}></Dice>
             ))}
           </div>
         </>

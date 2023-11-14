@@ -40,7 +40,6 @@ export default function ModalSpellInfo({ spell, setOpenmodalInfo }) {
   const handleClick = () => {
     setRolls();
     const rollResult = diceRoller(dices);
-    console.log(rollResult);
     setRolls(rollResult);
   };
 
@@ -86,28 +85,27 @@ export default function ModalSpellInfo({ spell, setOpenmodalInfo }) {
             </div>
 
             {spellInfo.damage && spellInfo.damage.damage_at_slot_level ? (
-                <div className="flex w-full flex-col items-center border-t-8  border-t-black border-b-black border-b-8">
-                  <div className="mt-4 ">
-                    <p>Dices:</p>
-                    <select onChange={handleSelectChange}>
-                      {Object.entries(spellInfo.damage.damage_at_slot_level).map(([key, value], index) => (
-                        <option key={key} value={value} selected={index === 0} >
-                          {`lvl ${key}: ${value}`}
-                        </option>
-                      ))
-                      }
-                    </select>
-                    <button type="button" className=" ml-2 mb-2 w-20 p-1 hover:bg-slate-600 bg-slate-900 rounded pointer  shadow-lg text-white"
-                      onClick={handleClick}>roll dice</button>
-                    
-
-                  </div>
+              <div className="flex w-full flex-col items-center border-t-8  border-t-black border-b-black border-b-8">
+                <div className="mt-4 ">
+                  <p>Dices:</p>
+                  <select onChange={handleSelectChange}>
+                    {Object.entries(spellInfo.damage.damage_at_slot_level).map(([key, value], index) => (
+                      <option key={key} value={value} selected={index === 0}>
+                        {`lvl ${key}: ${value}`}
+                      </option>
+                    ))}
+                  </select>
+                  <button type="button" className=" ml-2 mb-2 w-20 p-1 hover:bg-slate-600 bg-slate-900 rounded pointer  shadow-lg text-white"
+                    onClick={handleClick}>roll dice</button>
 
 
-
-                  <DicesContainer rolls={rolls}></DicesContainer>
                 </div>
-              ) : (<></>)}
+
+
+
+                <DicesContainer rolls={rolls}></DicesContainer>
+              </div>
+            ) : (<></>)}
 
           </div>
         </>)
